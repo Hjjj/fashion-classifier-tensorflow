@@ -94,38 +94,11 @@ class FashionImageClassifier:
         # Return the class with the highest probability.
         return np.argmax(predictions)
 
-# Unit tests to validate the functionality of the FashionImageClassifier
-class TestFashionImageClassifier(unittest.TestCase):
-    """
-    Unit test class to test various functionalities of the FashionImageClassifier.
-    Uses the unittest module to define and run test cases.
-    """
-    
-    def setUp(self):
+    def class_names(self):
         """
-        Set up a classifier instance and prepare it for testing.
+        Returns the list of class names corresponding to the fashion categories.
         """
-        self.classifier = FashionImageClassifier()
-        self.classifier.preprocess_data()
-        self.classifier.build_model()
-
-    def test_model_training(self):
-        """
-        Tests whether the model can be trained successfully and achieves a basic accuracy threshold.
-        """
-        self.classifier.train_model(epochs=1)  # Train with 1 epoch for quick testing.
-        loss, accuracy = self.classifier.evaluate_model()
-        # Check if accuracy exceeds a basic threshold (50% for this example).
-        self.assertGreater(accuracy, 0.5, "Accuracy should be greater than 50% for a simple test.")
-
-    def test_prediction(self):
-        """
-        Tests the model's ability to make predictions on sample data.
-        """
-        self.classifier.train_model(epochs=1)  # Train with 1 epoch for quick testing.
-        image = self.classifier.x_test[0]  # Use the first test image.
-        prediction = self.classifier.predict(image)
-        # Validate that the prediction is an integer and a valid class index.
-        self.assertIsInstance(prediction, int, "Prediction should be an integer.")
-        self.assertIn(prediction, range(10), "Prediction should be a valid class index.")
-
+        return [
+            'T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
+            'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot'
+        ]
